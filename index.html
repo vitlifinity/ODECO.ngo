@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Global Academy · Equipped for Life &amp; Ministry — 2026/2027 Courses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+<style>
+  :root {
+    --beige-300: #d9d6cf;
+    --beige-200: #e6e1d6;
+    --beige-100: #efeae0;
+    --cream:     #f3eee4;
+    --paper:     #faf7f0;
+    --ink:       #1f2731;
+    --ink-soft:  #3a444f;
+    --muted:     #6b6258;
+    --tan:       #a08572;
+    --tan-soft:  #c2a995;
+    --steel:     #5a7884;
+    --steel-dk:  #41606c;
+    --steel-lt:  #82a0aa;
+
+    --reg-url: "https://docs.google.com/forms/d/e/1FAIpQLSfIAGZweT7QI6I_Es8c1b8brWYlg_MD6lZevLvRg1sjAi_Zew/viewform?usp=publish-editor";
+
+    --maxw: 1200px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Manrope", -apple-system, "Segoe UI", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+
+  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  .eyebrow {
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--steel-dk);
+  }
+
+  h1, h2, h3 { font-family: "Bitter", Georgia, serif; font-weight: 800; line-height: 1.05; margin: 0; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    padding: 14px 26px;
+    border-radius: 999px;
+    text-decoration: none;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    transition: transform .15s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+  }
+  .btn--primary { background: var(--steel-dk); color: #fff; }
+  .btn--primary:hover { background: var(--ink); transform: translateY(-2px); box-shadow: 0 12px 26px -14px rgba(31,39,49,.6); }
+  .btn--ghost { background: transparent; color: var(--ink); border-color: var(--beige-300); }
+  .btn--ghost:hover { border-color: var(--steel-dk); color: var(--steel-dk); transform: translateY(-2px); }
+  .btn--light { background: #fff; color: var(--ink); }
+  .btn--light:hover { background: var(--cream); transform: translateY(-2px); }
+  .btn svg { width: 16px; height: 16px; }
+
+  /* ============ NAV ============ */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250, 247, 240, 0.82);
+    backdrop-filter: saturate(150%) blur(12px);
+    border-bottom: 1px solid var(--beige-300);
+  }
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    height: 72px;
+  }
+  .brand { display: flex; align-items: center; gap: 13px; text-decoration: none; }
+  .brand__mark {
+    width: 42px; height: 42px; flex: 0 0 42px;
+    border-radius: 50%;
+    background: var(--steel-dk);
+    color: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .brand__mark svg { width: 24px; height: 24px; }
+  .brand__name { font-family: "Bitter", serif; font-weight: 800; font-size: 18px; color: var(--ink); line-height: 1.05; }
+  .brand__name small { display: block; font-family: "Manrope", sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
+  .nav__links { display: flex; align-items: center; gap: 30px; }
+  .nav__links a { text-decoration: none; font-weight: 600; font-size: 15px; color: var(--ink-soft); transition: color .15s ease; }
+  .nav__links a:hover { color: var(--steel-dk); }
+  .nav__cta { display: flex; align-items: center; gap: 14px; }
+
+  /* hamburger */
+  .nav__burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    width: 46px; height: 46px;
+    align-items: center; justify-content: center;
+    background: transparent;
+    border: 1px solid var(--beige-300);
+    border-radius: 12px;
+    cursor: pointer;
+  }
+  .nav__burger span { width: 21px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .22s ease, opacity .18s ease; }
+  .nav__burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav__burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav__burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav__mobile {
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 0;
+    background: rgba(250, 247, 240, 0.98);
+    border-top: 1px solid transparent;
+    transition: max-height .3s ease, border-color .3s ease;
+  }
+  .nav__mobile.open { max-height: 360px; border-top-color: var(--beige-300); }
+  .nav__mobile a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--ink-soft);
+    padding: 16px 28px;
+    border-bottom: 1px solid var(--beige-200);
+  }
+  .nav__mobile a:active { background: var(--cream); }
+  .nav__mobile .btn { margin: 16px 28px 22px; justify-content: center; color: #fff; border: none; }
+
+  /* ============ HERO ============ */
+  .hero { padding: 70px 0 64px; border-bottom: 1px solid var(--beige-300); background:
+      radial-gradient(1100px 480px at 88% -8%, var(--cream), transparent 60%); }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .hero__title { font-size: clamp(42px, 6vw, 76px); letter-spacing: -0.015em; margin: 22px 0 0; }
+  .hero__title em { font-style: italic; font-weight: 500; color: var(--steel-dk); }
+  .hero__lede { font-size: 19px; color: var(--ink-soft); max-width: 38ch; margin: 24px 0 0; }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+  .hero__meta { display: flex; flex-wrap: wrap; gap: 26px; margin-top: 40px; padding-top: 26px; border-top: 1px solid var(--beige-300); }
+  .hero__meta div { display: flex; flex-direction: column; }
+  .hero__meta b { font-family: "Bitter", serif; font-size: 26px; color: var(--steel-dk); }
+  .hero__meta span { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; color: var(--muted); }
+
+  .hero__figure { position: relative; }
+  .hero__photo {
+    width: 100%;
+    aspect-ratio: 4 / 3.2;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 30px 70px -34px rgba(31,39,49,.55);
+  }
+  .hero__badge {
+    position: absolute;
+    left: -22px; bottom: -22px;
+    background: var(--paper);
+    border: 1px solid var(--beige-300);
+    border-radius: 6px;
+    padding: 16px 20px;
+    display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 18px 40px -22px rgba(31,39,49,.5);
+  }
+  .hero__badge img { height: 30px; width: auto; }
+  .hero__badge .vline { width: 1px; height: 34px; background: var(--beige-300); }
+  .hero__badge span { font-size: 12.5px; font-weight: 700; line-height: 1.3; color: var(--ink-soft); }
+  .hero__badge span small { display:block; font-weight:600; color: var(--muted); letter-spacing:.04em; }
+
+  /* ============ COURSES ============ */
+  .section { padding: 84px 0; }
+  .section__head { max-width: 60ch; margin-bottom: 48px; }
+  .section__head h2 { font-size: clamp(32px, 4vw, 46px); margin-top: 14px; letter-spacing: -0.01em; line-height: 1.1; }
+  .section__head p { color: var(--ink-soft); font-size: 18px; margin: 22px 0 0; }
+
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 26px;
+    align-items: start;
+  }
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--beige-300);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 26px 50px -28px rgba(31,39,49,.42); border-color: var(--tan-soft); }
+  .card__media { position: relative; aspect-ratio: 16 / 9; background: var(--beige-200); }
+  .card__media img { width: 100%; height: 100%; object-fit: cover; }
+  .card__num {
+    position: absolute; top: 14px; left: 14px;
+    font-family: "Bitter", serif; font-weight: 800; font-size: 13px;
+    color: #fff; background: rgba(31,39,49,.55);
+    backdrop-filter: blur(4px);
+    width: 30px; height: 30px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    letter-spacing: 0.02em;
+  }
+  .card__badge {
+    position: absolute; right: 18px; bottom: -22px;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--paper);
+    border: 1px solid var(--beige-300);
+    color: var(--steel-dk);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 22px -12px rgba(31,39,49,.45);
+  }
+  .card__badge svg { width: 30px; height: 30px; }
+  .card__body { padding: 26px 24px 24px; display: flex; flex-direction: column; }
+  .card__tag { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--tan); }
+  .card__title { font-size: 25px; margin: 8px 0 4px; }
+  .card__sub { font-size: 14px; font-weight: 600; color: var(--steel-dk); margin: 0 0 12px; }
+  .card__desc { font-size: 15px; color: var(--ink-soft); margin: 0 0 16px; line-height: 1.55; }
+  .card__desc strong { color: var(--ink); font-weight: 700; }
+  .card ul { list-style: none; margin: 16px 0 0; padding: 14px 0 0; border-top: 1px dashed var(--beige-300); display: flex; flex-direction: column; gap: 8px; }
+  .card ul li { position: relative; padding-left: 22px; font-size: 14px; color: var(--ink-soft); line-height: 1.4; }
+  .card ul li::before {
+    content: ""; position: absolute; left: 2px; top: 7px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--tan-soft); box-shadow: 0 0 0 3px rgba(194,169,149,.22);
+  }
+
+  /* ============ AUTHORS ============ */
+  .authors { background: var(--steel-dk); color: var(--cream); border-radius: 14px; overflow: hidden; }
+  .authors__grid { display: grid; grid-template-columns: 1.15fr 0.85fr; }
+  .authors__main { padding: 64px 56px; }
+  .authors__open { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream); border: 1px solid rgba(243,238,228,.35); padding: 7px 16px; border-radius: 999px; }
+  .authors__open svg { width: 16px; height: 16px; }
+  .authors h2 { font-size: clamp(34px, 4.2vw, 52px); margin: 26px 0 0; color: #fff; }
+  .authors h2 .accent { display: block; font-family: "Manrope", sans-serif; font-weight: 600; font-size: 17px; letter-spacing: 0.01em; color: var(--steel-lt); margin-top: 14px; }
+  .authors__lede { font-size: 18px; color: rgba(243,238,228,.86); max-width: 52ch; margin: 26px 0 0; }
+  .authors__lede strong { color: #fff; }
+  .authors__quote { margin: 32px 0 0; padding-left: 22px; border-left: 3px solid var(--steel-lt); }
+  .authors__quote b { display:block; font-family: "Bitter", serif; font-style: italic; font-weight: 600; font-size: 22px; color: #fff; }
+  .authors__quote span { font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--steel-lt); }
+  .authors__actions { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 14px; }
+  .authors__side { background: rgba(0,0,0,.14); padding: 56px 44px; display: flex; flex-direction: column; justify-content: center; gap: 26px; }
+  .authors__side h4 { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--steel-lt); margin: 0 0 8px; }
+  .authors__side p { margin: 0; font-size: 15px; color: rgba(243,238,228,.9); line-height: 1.5; }
+  .authors__side p b { display:block; font-family: "Bitter", serif; font-size: 18px; color: #fff; margin-bottom: 3px; }
+
+  /* ============ REGISTER / CONTACT ============ */
+  .register { background: var(--cream); border-top: 1px solid var(--beige-300); border-bottom: 1px solid var(--beige-300); }
+  .register__grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 56px; align-items: center; }
+  .register h2 { font-size: clamp(34px, 4.4vw, 54px); margin: 14px 0 0; letter-spacing: -0.01em; }
+  .register p.lead { font-size: 19px; color: var(--ink-soft); margin: 20px 0 0; max-width: 44ch; }
+  .register__contacts { display: flex; flex-wrap: wrap; gap: 40px; margin: 34px 0 0; }
+  .register__contacts h4 { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--steel-dk); margin: 0 0 8px; }
+  .register__contacts p { margin: 0; font-size: 15.5px; color: var(--ink-soft); line-height: 1.5; }
+  .register__contacts p b { display: block; font-family: "Bitter", serif; font-size: 19px; color: var(--ink); margin-bottom: 2px; }
+  .register__actions { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; }
+
+  .qr-card {
+    justify-self: center;
+    background: var(--paper);
+    border: 1px solid var(--beige-300);
+    border-radius: 12px;
+    padding: 26px;
+    text-align: center;
+    box-shadow: 0 22px 48px -28px rgba(31,39,49,.4);
+  }
+  .qr-card .qr { width: 190px; height: 190px; margin: 0 auto; }
+  .qr-card .qr svg { width: 100%; height: 100%; display: block; }
+  .qr-card .qr-cap { margin-top: 16px; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--steel-dk); }
+  .qr-card .qr-sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* ============ FOOTER ============ */
+  .footer { padding: 52px 0; }
+  .footer__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+  .footer__brand { display: flex; align-items: center; gap: 14px; }
+  .footer__brand img { height: 34px; width: auto; }
+  .footer__brand .vline { width: 1px; height: 32px; background: var(--beige-300); }
+  .footer__brand span { font-size: 13px; color: var(--muted); line-height: 1.4; }
+  .footer__brand span b { display:block; font-family:"Bitter", serif; font-size:15px; color: var(--ink); }
+  .footer__links { display: flex; gap: 24px; }
+  .footer__links a { text-decoration: none; font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+  .footer__links a:hover { color: var(--steel-dk); }
+  .footer__copy { width: 100%; border-top: 1px solid var(--beige-300); padding-top: 22px; font-size: 13px; color: var(--muted); }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 940px) {
+    .hero__grid { grid-template-columns: 1fr; gap: 48px; }
+    .hero__figure { order: -1; max-width: 480px; }
+    .authors__grid { grid-template-columns: 1fr; }
+    .register__grid { grid-template-columns: 1fr; gap: 40px; }
+    .qr-card { order: -1; }
+  }
+  @media (max-width: 720px) {
+    body { font-size: 16px; }
+    .wrap { padding: 0 20px; }
+    .nav__links { display: none; }
+    .nav__cta { display: none; }
+    .nav__burger { display: flex; }
+    .nav__mobile { display: flex; }
+    .section { padding: 56px 0; }
+    .section__head { margin-bottom: 34px; }
+    .courses-grid { grid-template-columns: 1fr; gap: 22px; }
+    .card__media { aspect-ratio: 16 / 10; }
+    .hero { padding: 48px 0 52px; }
+    .hero__lede { font-size: 17px; }
+    .hero__meta { gap: 20px; }
+    .hero__badge { left: 0; right: 0; padding: 13px 16px; }
+    .authors__main { padding: 40px 26px; }
+    .authors__side { padding: 34px 26px; }
+    .register__contacts { gap: 28px; }
+    .footer__inner { gap: 18px; }
+    .footer__links { flex-wrap: wrap; gap: 16px 22px; }
+  }
+  @media (max-width: 420px) {
+    .wrap { padding: 0 16px; }
+    .hero__meta div { min-width: 0; }
+    .hero__badge { position: static; margin-top: 18px; }
+    .qr-card { padding: 22px; }
+    .qr-card .qr { width: 168px; height: 168px; }
+    .brand__name small { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ICON DEFINITIONS -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="ic-teaching" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 26 L32 14 L60 26 L32 38 Z"/><path d="M14 30 V44 C14 48 22 52 32 52 C42 52 50 48 50 44 V30"/><path d="M56 28 V42"/><circle cx="56" cy="46" r="2.4" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="ic-medical" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 8 L52 14 V32 C52 44 42 54 32 58 C22 54 12 44 12 32 V14 Z"/><path d="M32 22 V42"/><path d="M22 32 H42"/></g></symbol>
+  <symbol id="ic-hvac" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="14" width="44" height="36" rx="2"/><circle cx="32" cy="32" r="11"/><circle cx="32" cy="32" r="2" fill="currentColor" stroke="none"/><path d="M32 21 C36 25 36 29 32 32"/><path d="M43 32 C39 36 35 36 32 32"/><path d="M32 43 C28 39 28 35 32 32"/><path d="M21 32 C25 28 29 28 32 32"/><path d="M14 50 V54"/><path d="M50 50 V54"/></g></symbol>
+  <symbol id="ic-electrical" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M36 6 L14 36 H30 L26 58 L50 26 H34 Z"/><path d="M8 14 L14 18"/><path d="M52 50 L58 46"/></g></symbol>
+  <symbol id="ic-music" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="26" y="8" width="12" height="28" rx="6"/><path d="M18 28 C18 38 25 44 32 44 C39 44 46 38 46 28"/><path d="M32 44 V54"/><path d="M24 54 H40"/><path d="M10 22 C12 26 12 30 10 34"/><path d="M54 22 C52 26 52 30 54 34"/></g></symbol>
+  <symbol id="ic-kids" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="20" r="5"/><path d="M6 40 C6 34 10 30 14 30 C18 30 22 34 22 40 V50 H6 Z"/><circle cx="32" cy="16" r="6"/><path d="M22 42 C22 34 27 28 32 28 C37 28 42 34 42 42 V54 H22 Z"/><circle cx="50" cy="20" r="5"/><path d="M42 40 C42 34 46 30 50 30 C54 30 58 34 58 40 V50 H42 Z"/></g></symbol>
+  <symbol id="ic-finance" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="32" cy="16" rx="20" ry="6"/><path d="M12 16 V26 C12 29 21 32 32 32 C43 32 52 29 52 26 V16"/><path d="M12 26 V36 C12 39 21 42 32 42 C43 42 52 39 52 36 V26"/><path d="M12 36 V46 C12 49 21 52 32 52 C43 52 52 49 52 46 V36"/><path d="M32 10 V22"/><path d="M35 12 H30 C28 12 28 16 30 16 H34 C36 16 36 20 34 20 H29"/></g></symbol>
+  <symbol id="ic-efcf" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 40 C18 36 28 36 32 40 C36 36 46 36 54 40 V54 C46 50 36 50 32 54 C28 50 18 50 10 54 Z"/><path d="M32 40 V54"/><path d="M22 16 V32"/><path d="M16 22 H28"/><path d="M36 18 C40 14 46 14 50 18 C46 18 44 22 48 24 C44 26 38 24 36 20 Z" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="ic-megaphone" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 26 H22 L46 14 V50 L22 38 H10 Z"/><path d="M22 26 V38"/><path d="M52 22 C56 26 56 38 52 42"/></g></symbol>
+  <symbol id="ic-arrow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12 H19"/><path d="M13 6 L19 12 L13 18"/></g></symbol>
+</defs></svg>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="#top">
+      <span class="brand__mark"><svg><use href="#ic-efcf"/></svg></span>
+      <span class="brand__name">Global Academy<small>Spiritual Equipment Seminary</small></span>
+    </a>
+    <nav class="nav__links">
+      <a href="#courses">Courses</a>
+      <a href="#authors">For Authors</a>
+      <a href="#register">Contact</a>
+    </nav>
+    <div class="nav__cta">
+      <a class="btn btn--ghost" href="#courses">Browse courses</a>
+      <a class="btn btn--primary js-register" href="#register">Register</a>
+    </div>
+    <button class="nav__burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="nav__mobile" id="navMobile">
+    <a href="#courses">Courses</a>
+    <a href="#authors">For Authors</a>
+    <a href="#register">Contact</a>
+    <a class="btn btn--primary js-register" href="#register">Register</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <span class="eyebrow">Spiritual Equipment Seminary · 2026 / 2027</span>
+        <h1 class="hero__title">Equipped for<br/><em>Life &amp; Ministry</em></h1>
+        <p class="hero__lede">A catalogue of vocational, ministry, and life-skill courses — practical training for trade, service, and faith in Spartanburg, South Carolina.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary js-register" href="#register">Register now <svg><use href="#ic-arrow"/></svg></a>
+          <a class="btn btn--ghost" href="#courses">View all 7 courses</a>
+        </div>
+        <div class="hero__meta">
+          <div><b>7</b><span>Programs offered</span></div>
+          <div><b>2026/27</b><span>Academic year</span></div>
+          <div><b>SC</b><span>Spartanburg campus</span></div>
+        </div>
+      </div>
+      <div class="hero__figure">
+        <img class="hero__photo" src="assets/global-academy.jpg" alt="Global Academy campus building" />
+        <div class="hero__badge">
+          <img src="assets/odeco-logo.png" alt="ODECO — Open Door Educational Center" />
+          <span class="vline"></span>
+          <span>Open Door<br/>Educational Center<small>In partnership</small></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COURSES ============ -->
+  <section class="section" id="courses">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">Course Catalogue</span>
+        <h2>Train for a trade, a ministry, or a stronger life.</h2>
+        <p>Seven hands-on programs taught by certified instructors and partner universities — from state-licensed trades to ministry and practical life skills.</p>
+      </div>
+
+      <div class="courses-grid">
+
+        <!-- 1 Teaching -->
+        <article class="card">
+          <div class="card__media">
+            <img src="https://images.unsplash.com/photo-1758685734312-5134968399a8?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="Teacher writing on a blackboard" loading="lazy" referrerpolicy="no-referrer" />
+            <span class="card__num">01</span>
+            <span class="card__badge"><svg><use href="#ic-teaching"/></svg></span>
+          </div>
+          <div class="card__body">
+            <span class="card__tag">Education · State License</span>
+            <h3 class="card__title">Teaching</h3>
+            <p class="card__sub">Pedagogical Course · Partner Universities</p>
+            <p class="card__desc">Complete this program through a partner university — <strong>Bob Jones, Arizona State, or Liberty</strong> — and earn a state-recognized teaching license valid for any U.S. public, charter, or private school.</p>
+            <ul>
+              <li>A real U.S. teaching license recognized nationwide</li>
+              <li>Offered through accredited partner universities</li>
+              <li>Opens doors to stable careers in education</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 2 First Medical Aid -->
+        <article class="card">
+          <div class="card__media">
+            <img src="https://images.unsplash.com/photo-1755549746560-f56c7bd0c82f?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="CPR training" loading="lazy" referrerpolicy="no-referrer" />
+            <span class="card__num">02</span>
+            <span class="card__badge"><svg><use href="#ic-medical"/></svg></span>
+          </div>
+          <div class="card__body">
+            <span class="card__tag">Health · Certification</span>
+            <h3 class="card__title">First Medical Aid</h3>
+            <p class="card__sub">In partnership with Med Outreach — South Carolina</p>
+            <p class="card__desc">A hands-on emergency response course offered with <strong>Med Outreach CPR</strong>. Learn CPR, first-aid protocols, and how to respond confidently when seconds count.</p>
+            <ul>
+              <li>Certification recognized across South Carolina</li>
+              <li>Practical training with certified instructors</li>
+              <li>Skills that can save a life at home, church, or work</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 3 HVAC -->
+        <article class="card">
+          <div class="card__media">
+            <img src="assets/hvac-outdoor-unit.png" alt="HVAC outdoor condenser unit" loading="lazy" />
+            <span class="card__num">03</span>
+            <span class="card__badge"><svg><use href="#ic-hvac"/></svg></span>
+          </div>
+          <div class="card__body">
+            <span class="card__tag">Trade · 2-Year Program</span>
+            <h3 class="card__title">HVAC Technician</h3>
+            <p class="card__sub">2-Year Program · State License</p>
+            <p class="card__desc">A two-year hands-on program preparing students to pass the <strong>state licensing exam</strong> and become certified HVAC technicians — qualified to install and service systems across the U.S.</p>
+            <ul>
+              <li>Graduate with a state-issued professional license</li>
+              <li>High-demand trade with strong earning potential</li>
+              <li>Train on real residential &amp; commercial systems</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 4 Electrical -->
+        <article class="card">
+          <div class="card__media">
+            <img src="assets/electrical.jpg" alt="Electrical work" loading="lazy" />
+            <span class="card__num">04</span>
+            <span class="card__badge"><svg><use href="#ic-electrical"/></svg></span>
+          </div>
+          <div class="card__body">
+            <span class="card__tag">Trade · Pre-License</span>
+            <h3 class="card__title">Basic Electrical</h3>
+            <p class="card__sub">Pre-License · 1 Year</p>
+            <p class="card__desc">A <strong>one-year in-person foundation course</strong> covering the principles, applications, and electrical loads behind everyday systems — the essential knowledge to pursue a full electrician's license.</p>
+            <ul>
+              <li>Solid foundation for a licensed electrician career</li>
+              <li>Covers real-world applications from day one</li>
+              <li>Affordable entry into a high-demand trade</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 5 Musical Ministry -->
+        <article class="card">
+          <div class="card__media">
+            <img src="https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="Worship music and singing" loading="lazy" referrerpolicy="no-referrer" />
+            <span class="card__num">05</span>
+            <span class="card__badge"><svg><use href="#ic-music"/></svg></span>
+          </div>
+          <div class="card__body">
+            <span class="card__tag">Ministry · Performance</span>
+            <h3 class="card__title">Musical Ministry</h3>
+            <p class="card__sub">Voice · Ensemble · Performance</p>
+            <p class="card__desc">A comprehensive music program covering choral singing, solo vocal performance, voice coaching, and ensemble work — building <strong>technique, confidence, and artistry</strong> for ministry or stage.</p>
+            <ul>
+              <li>Individual voice placement and coaching included</li>
+              <li>Choir, solo, and band ensemble tracks available</li>
+              <li>Grow your musical gift for ministry and community</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 6 Kids Ministry -->
+        <article class="card">
+          <div class="card__media">
+            <img src="https://images.unsplash.com/photo-1745162829464-c3487261f90d?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="Child reading the Bible" loading="lazy" referrerpolicy="no-referrer" />
+            <span class="card__num">06</span>
+            <span class="card__badge"><svg><use href="#ic-kids"/></svg></span>
+          </div>
+          <div class="card__body">
+            <span class="card__tag">Ministry · Education</span>
+            <h3 class="card__title">Kids Ministry</h3>
+            <p class="card__sub">Sunday School · Teenagers · Youth</p>
+            <p class="card__desc">Essential training for anyone working with children and youth — Sunday school methodology, teen engagement, and youth program leadership that equips <strong>volunteers and staff to make a lasting impact</strong>.</p>
+            <ul>
+              <li>Practical tools for kids, teens, and youth</li>
+              <li>Equips both volunteers and ministry staff</li>
+              <li>Build programs that keep the next generation engaged</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 7 Finances -->
+        <article class="card">
+          <div class="card__media">
+            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="Financial indicators chart" loading="lazy" referrerpolicy="no-referrer" />
+            <span class="card__num">07</span>
+            <span class="card__badge"><svg><use href="#ic-finance"/></svg></span>
+          </div>
+          <div class="card__body">
+            <span class="card__tag">Life Skills · Literacy</span>
+            <h3 class="card__title">Finances</h3>
+            <p class="card__sub">Personal &amp; American Financial System</p>
+            <p class="card__desc">A foundational course on how the <strong>American financial system</strong> works — banking, credit, stock markets, investing, and real estate basics — to build lasting financial literacy and stability.</p>
+            <ul>
+              <li>Understand banks and credit scores, and use them wisely</li>
+              <li>Introduction to stocks, investments, and real estate</li>
+              <li>Practical knowledge applicable from day one</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AUTHORS ============ -->
+  <section class="section" id="authors" style="padding-top:0;">
+    <div class="wrap">
+      <div class="authors">
+        <div class="authors__grid">
+          <div class="authors__main">
+            <span class="authors__open"><svg><use href="#ic-megaphone"/></svg> Open Call</span>
+            <h2>Call for Course Authors<span class="accent">Bring your curriculum to Global Academy</span></h2>
+            <p class="authors__lede">Are you an <strong>educator, trainer, or subject-matter expert?</strong> Global Academy welcomes independent course authors and instructors to bring their own programs to our facility in Spartanburg, South Carolina.</p>
+            <div class="authors__quote">
+              <b>“We provide the space — you bring the knowledge.”</b>
+              <span>— Global Academy</span>
+            </div>
+            <div class="authors__actions">
+              <a class="btn btn--light js-register" href="#register">Propose a course <svg><use href="#ic-arrow"/></svg></a>
+            </div>
+          </div>
+          <div class="authors__side">
+            <div>
+              <h4>Host with us</h4>
+              <p>If you have a developed course or training program, partner with us and deliver your content to our growing community.</p>
+            </div>
+            <div>
+              <h4>Get in touch</h4>
+              <p><b>EFCFUSA.COM</b>Education Department<br/>Northwest Union of EFC Churches</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REGISTER / CONTACT ============ -->
+  <section class="register section" id="register">
+    <div class="wrap register__grid">
+      <div>
+        <span class="eyebrow">Enrollment 2026 / 2027</span>
+        <h2>Reserve your seat.</h2>
+        <p class="lead">Registration for the 2026/2027 academic year is open. Scan the code or reach out — we'll guide you to the right program.</p>
+        <div class="register__contacts">
+          <div>
+            <h4>Campus</h4>
+            <p><b>Global Academy</b>9768 Warren H Abernathy Hwy<br/>Spartanburg, SC 29301</p>
+          </div>
+          <div>
+            <h4>Questions</h4>
+            <p><b>Victor Georgiev</b><a href="tel:+15038305230" style="text-decoration:none;color:var(--steel-dk);font-weight:700;">(503) 830-5230</a></p>
+          </div>
+        </div>
+        <div class="register__actions">
+          <a class="btn btn--primary js-register" href="#register">Open registration form <svg><use href="#ic-arrow"/></svg></a>
+        </div>
+      </div>
+      <div class="qr-card">
+        <a class="qr js-register" href="#register" aria-label="Registration form QR code" id="qrRegister"></a>
+        <div class="qr-cap">Scan to register</div>
+        <div class="qr-sub">Google Forms · 2026/2027</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div class="footer__brand">
+      <img src="assets/odeco-logo.png" alt="ODECO" />
+      <span class="vline"></span>
+      <span><b>Global Academy</b>Spiritual Equipment Seminary · Spartanburg, SC</span>
+    </div>
+    <nav class="footer__links">
+      <a href="#courses">Courses</a>
+      <a href="#authors">For Authors</a>
+      <a href="#register">Register</a>
+      <a href="https://efcfusa.com" target="_blank" rel="noopener">EFCFUSA.COM</a>
+    </nav>
+    <div class="footer__copy">© 2026 Global Academy · Education Department, Northwest Union of EFC Churches. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  /* Mobile menu toggle */
+  (function mobileNav() {
+    var burger = document.getElementById('navBurger');
+    var menu = document.getElementById('navMobile');
+    if (!burger || !menu) return;
+    function close() { menu.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); burger.setAttribute('aria-label', 'Open menu'); }
+    burger.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+  })();
+
+  /* Wire every registration entry point to the live Google Form. */
+  (function wireRegister() {
+    var url = "https://docs.google.com/forms/d/e/1FAIpQLSfIAGZweT7QI6I_Es8c1b8brWYlg_MD6lZevLvRg1sjAi_Zew/viewform?usp=publish-editor";
+    document.querySelectorAll('.js-register').forEach(function (el) {
+      el.setAttribute('href', url);
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener');
+    });
+  })();
+
+  /* Registration QR */
+  (function generateQR() {
+    var url = "https://docs.google.com/forms/d/e/1FAIpQLSfIAGZweT7QI6I_Es8c1b8brWYlg_MD6lZevLvRg1sjAi_Zew/viewform?usp=publish-editor";
+    if (typeof qrcode === 'undefined') return;
+    var qr = qrcode(0, 'M');
+    qr.addData(url); qr.make();
+    var n = qr.getModuleCount(), size = 100, cell = size / n, rects = '';
+    for (var r = 0; r < n; r++) for (var c = 0; c < n; c++) {
+      if (qr.isDark(r, c)) rects += '<rect x="' + (c*cell).toFixed(3) + '" y="' + (r*cell).toFixed(3) + '" width="' + cell.toFixed(3) + '" height="' + cell.toFixed(3) + '" fill="#1f2731"/>';
+    }
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+size+' '+size+'" shape-rendering="crispEdges"><rect width="'+size+'" height="'+size+'" fill="#faf7f0"/>' + rects + '</svg>';
+    document.getElementById('qrRegister').innerHTML = svg;
+  })();
+</script>
+</body>
+</html>

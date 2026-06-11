@@ -1,0 +1,8 @@
+# dependencies / tooling
+node_modules/
+.vercel
+.DS_Store
+
+# logs
+*.log
+npm-debug.log*
