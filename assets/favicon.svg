@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ODECO">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6eb8d4"/>
-      <stop offset="100%" stop-color="#2a6f8f"/>
+    <linearGradient id="bg" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#5eb8d8"/>
+      <stop offset="100%" stop-color="#1a5f82"/>
     </linearGradient>
   </defs>
-  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
-  <path fill="#111" d="M18 14h18c1.1 0 2 .9 2 2v32c0 1.1-.9 2-2 2H18c-1.1 0-2-.9-2-2V16c0-1.1.9-2 2-2z"/>
-  <path fill="#111" d="M36 16h10c1.1 0 2 .9 2 2v28c0 1.1-.9 2-2 2H36V16z"/>
-  <circle cx="32" cy="32" r="2.2" fill="#111"/>
+  <rect x="11" y="6" width="42" height="52" rx="12" fill="url(#bg)"/>
+  <path fill="#faf7f0" d="M22 16h12c.6 0 1 .4 1 1v30c0 .6-.4 1-1 1H22c-.6 0-1-.4-1-1V17c0-.6.4-1 1-1z"/>
+  <path fill="#faf7f0" d="M34 17h10c.6 0 1 .4 1 1v28c0 .6-.4 1-1 1H34V17z"/>
+  <rect x="31" y="30" width="2.2" height="6" rx="1.1" fill="#faf7f0"/>
 </svg>
